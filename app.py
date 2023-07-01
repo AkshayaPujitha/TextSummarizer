@@ -8,7 +8,8 @@ app=Flask(__name__,template_folder='src')
 
 @app.route('/')
 def home():
-    return render_template("index.html")
+    data={'is_click':False}
+    return render_template("index.html",data=data)
 
 def get_summary(input_text):
     API_URL = "https://api-inference.huggingface.co/models/google/pegasus-cnn_dailymail"
@@ -28,7 +29,8 @@ def summarize():
     
     output_summary=get_summary(input)
     print(output_summary[0]['summary_text'])
-    return render_template("index.html",output=output_summary[0]['summary_text'])
+    data={'output':output_summary[0]['summary_text'],'input':input,'is_click':True}
+    return render_template("index.html",data=data)
 
 
 if __name__=="__main__":
