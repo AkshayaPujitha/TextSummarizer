@@ -3,7 +3,7 @@ import requests
 import json
 import os
 
-API_TOKEN=API_TOKEN = os.environ.get('API_TOKEN')
+API_TOKEN= os.environ.get('API_TOKEN')
 app=Flask(__name__,template_folder='src')
 
 @app.route('/')
@@ -13,7 +13,7 @@ def home():
 def get_summary(input_text):
     API_URL = "https://api-inference.huggingface.co/models/google/pegasus-cnn_dailymail"
     headers = {"Authorization": f"Bearer {API_TOKEN}"}
-    
+
     def query(payload):
         response = requests.post(API_URL, headers=headers, json=payload)
         return response.json()
