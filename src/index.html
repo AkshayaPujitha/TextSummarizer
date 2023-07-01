@@ -56,14 +56,25 @@
 <body>
     <div class="container">
         <h1>Text Summarization</h1>
-        
-        <form action="summarizer/" method="POST">
-            <textarea id="input-text" name="text" placeholder="Enter your text here..."></textarea>
+    {% if data.is_click %}
+        <form action="/summarizer/" method="POST">
+            <textarea id="input-text" name="text" placeholder="Enter your text here...">
+                
+                    {{data.input}}
+                
+            </textarea>
             <input type="submit" id="button" value="summarizer">
     </form>
+    {% else %}
+    <form action="/summarizer/" method="POST">
+        <textarea id="input-text" name="text" placeholder="Enter your text here..."></textarea>
+        <input type="submit" id="button" value="summarizer">
+</form>
+{% endif %}
+
     <div>
         <div id="summary" class="summary">
-            {{output}}
+            {{data.output}}
         </div>
     </div>
 </div>
